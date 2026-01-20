@@ -107,7 +107,7 @@ socket.on("CLEAR_ALL", ({ roomId }) => {
 });
 
 // Serve index.html for all routes (SPA fallback)
-app.get("*", (req, res) => {
+app.use((req, res) => {
   const indexPath = path.join(distPath, "index.html");
   res.sendFile(indexPath);
 });
