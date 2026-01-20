@@ -10,14 +10,14 @@ const io = new Server(server, {
   cors: { origin: "*" }
 });
 
-// Serve static files from Client/dist
+
 const distPath = path.join(__dirname, "../Client/dist");
 console.log("Serving static files from:", distPath);
 app.use(express.static(distPath));
 
 const history = new HistoryManager();
 const colors = ["#e74c3c", "#3498db", "#2ecc71", "#f1c40f", "#9b59b6"];
-const roomUsers = {}; // Track users by room
+const roomUsers = {}; 
 
 io.on("connection", socket => {
   console.log("User connected:", socket.id);
@@ -35,7 +35,7 @@ io.on("connection", socket => {
 
     console.log(`Room ${roomId} now has ${roomUsers[roomId].length} users:`, roomUsers[roomId].map(u => u.name));
 
-    // send existing users to this user
+    
     roomUsers[roomId].forEach(user => {
       if (user.id !== socket.id) {
         console.log(`Sending existing user ${user.name} to new user ${userName}`);
@@ -53,7 +53,7 @@ io.on("connection", socket => {
 
 socket.on("disconnect", () => {
   if (socket.userData) {
-    // Find the room the user was in
+    // room the user was in
     for (const roomId in roomUsers) {
       roomUsers[roomId] = roomUsers[roomId].filter(u => u.id !== socket.id);
       if (roomUsers[roomId].length === 0) delete roomUsers[roomId];
@@ -106,8 +106,8 @@ socket.on("CLEAR_ALL", ({ roomId }) => {
   });
 });
 
-// Serve index.html for all routes (SPA fallback)
-app.use((req, res) => {
+// Serve index.html for all routes 
+app.get("*", (req, res) => {
   const indexPath = path.join(distPath, "index.html");
   res.sendFile(indexPath);
 });

@@ -71,13 +71,13 @@ canvas {
 .history-layer {
   z-index: 1;
   pointer-events: none;
-  /* history layer never receives input */
+  
 }
 
 .overlay-layer {
   z-index: 2;
   pointer-events: auto;
-  /* only this layer receives drawing input */
+  
 }
 
 .toolbar {

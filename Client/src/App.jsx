@@ -89,7 +89,7 @@ function App() {
     };
   }, []);
 
-  // Handle tool/color changes for stroke creation
+  
   useEffect(() => {
     if (!socketRef.current || !overlayRendererRef.current || !historyRendererRef.current || !engineRef.current) return;
 
@@ -135,7 +135,7 @@ function App() {
     inputControllerRef.current = inputController;
 
     return () => {
-      // Cleanup previous input controller if needed
+      
     };
   }, [color, tool, strokeWidth]);
 
