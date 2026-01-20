@@ -1,0 +1,94 @@
+html,
+body,
+#root {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.toolbar button,
+.toolbar input {
+  margin-right: 6px;
+}
+
+.users-panel {
+  position: fixed;
+  top: 70px;
+  left: 10px;
+  background: rgba(0, 0, 0, 0.8);
+  padding: 12px;
+  border-radius: 6px;
+  z-index: 100;
+  color: white;
+  min-width: 150px;
+  max-width: 250px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.users-panel h3 {
+  margin: 0 0 8px 0;
+  font-size: 14px;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: #888;
+  padding-bottom: 8px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.users-panel ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.users-panel li {
+  font-size: 13px;
+  padding: 4px 0;
+  word-break: break-word;
+}
+
+.users-panel p {
+  margin: 0;
+  font-size: 12px;
+  color: #999;
+}
+
+.users-toggle-btn {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.history-layer {
+  z-index: 1;
+  pointer-events: none;
+  /* history layer never receives input */
+}
+
+.overlay-layer {
+  z-index: 2;
+  pointer-events: auto;
+  /* only this layer receives drawing input */
+}
+
+.toolbar {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  background: #222;
+  padding: 10px;
+  border-radius: 8px;
+  color: white;
+  z-index: 10;
+  pointer-events: auto;
+  /* UI must receive clicks */
+}
