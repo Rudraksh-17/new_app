@@ -11,7 +11,9 @@ const io = new Server(server, {
 });
 
 // Serve static files from Client/dist
-app.use(express.static(path.join(__dirname, "../Client/dist")));
+const distPath = path.join(__dirname, "../Client/dist");
+console.log("Serving static files from:", distPath);
+app.use(express.static(distPath));
 
 const history = new HistoryManager();
 const colors = ["#e74c3c", "#3498db", "#2ecc71", "#f1c40f", "#9b59b6"];
@@ -106,7 +108,8 @@ socket.on("CLEAR_ALL", ({ roomId }) => {
 
 // Serve index.html for all routes (SPA fallback)
 app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "../Client/dist/index.html"));
+  const indexPath = path.join(distPath, "index.html");
+  res.sendFile(indexPath);
 });
 
 const PORT = process.env.PORT || 3002;
