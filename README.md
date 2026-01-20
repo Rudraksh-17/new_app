@@ -34,6 +34,7 @@ A real-time collaborative drawing application built with React, Node.js, and Soc
 flam_app/
 ├── Client/                    # React frontend
 │   ├── src/
+│   │   ├── main.jsx          # Vite entry point (renders App to DOM)
 │   │   ├── App.jsx           # Main React component
 │   │   ├── socket/
 │   │   │   └── socket.js     # Socket.io initialization and events
