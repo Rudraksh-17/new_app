@@ -13,7 +13,8 @@ export function initSocket({
   onUserLeave,
   onClearAll
 }) {
-  const socket = io("http://localhost:3002");
+  const socketURL = process.env.REACT_APP_SOCKET_URL || "https://new-app-tbct.onrender.com";
+  const socket = io(socketURL);
 
   socket.on("connect", () => {
     console.log("Connected to server:", socket.id);

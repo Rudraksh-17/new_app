@@ -2,12 +2,16 @@ const express = require("express");
 const http = require("http");
 const { Server } = require("socket.io");
 const HistoryManager = require("./history");
+const path = require("path");
 
 const app = express();
 const server = http.createServer(app);
 const io = new Server(server, {
   cors: { origin: "*" }
 });
+
+// Serve static files from Client/dist
+app.use(express.static(path.join(__dirname, "../Client/dist")));
 
 const history = new HistoryManager();
 const colors = ["#e74c3c", "#3498db", "#2ecc71", "#f1c40f", "#9b59b6"];
@@ -100,6 +104,8 @@ socket.on("CLEAR_ALL", ({ roomId }) => {
   });
 });
 
-server.listen(3002, () => {
-  console.log("Server running on port 3002");
+// Serve index.html for all routes (SPA fallback)
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "../Client/dist/index.html"));
 });
+
